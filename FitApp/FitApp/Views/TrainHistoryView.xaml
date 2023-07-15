@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:vm="clr-namespace:FitApp.ViewModels"
+             xmlns:m="clr-namespace:FitApp.Models"
+             x:Class="FitApp.Views.TrainHistoryView"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#F1F6F9">
+
+    <ContentPage.BindingContext>
+        <vm:TrainingProgramHistoryViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Padding="20,20,20,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0" Command="{Binding BackCommand}" BackgroundColor="#F1F6F9" CornerRadius="110" WidthRequest="40" HeightRequest="40" Margin="0,0,10,0">
+                    <Button.ImageSource>
+                        <FileImageSource File="back.png"/>
+                    </Button.ImageSource>
+                </Button>
+
+                <Label Grid.Column="1" Text="История" FontSize="30" FontAttributes="Bold" TextColor="Black" Margin="0,0,0,0"/>
+
+            </Grid>
+
+            <StackLayout Grid.Row="1" Padding="40,30,40,0">
+                <ListView ItemsSource="{Binding HistoryList}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Text="{Binding Name}" FontSize="14" TextColor="Black" Grid.Column="0" HorizontalOptions="StartAndExpand" />
+                                    <Label Text="{Binding DateTraining, StringFormat='{0:dd/MM/yy}'}" FontSize="14" TextColor="Black" Grid.Column="1" HorizontalOptions="EndAndExpand" />
+                                </Grid>
+
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

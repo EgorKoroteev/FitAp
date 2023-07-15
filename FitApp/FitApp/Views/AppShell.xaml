@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:FitApp.Views"
+             Visual="Material"
+             x:Class="FitApp.Views.AppShell">
+
+    <Shell.TabBarBackgroundColor>
+        <Color>White</Color>
+    </Shell.TabBarBackgroundColor>
+
+    <Shell.TabBarTitleColor>
+        <Color>Blue</Color>
+    </Shell.TabBarTitleColor>
+
+    
+    <TabBar>
+        <Tab Title="Замеры" Icon="weight.png">
+            <ShellContent ContentTemplate="{DataTemplate pages:ProfileView}"/>
+        </Tab>
+        <Tab Title="Тренировки" Icon="train.png">
+            <ShellContent ContentTemplate="{DataTemplate pages:TrainingProgramsView}"/>
+        </Tab>
+        <Tab Title="Упражнения" Icon="exer.png">
+            <ShellContent ContentTemplate="{DataTemplate pages:MuscleGroupView}"/>
+        </Tab>
+        <Tab Title="Таймер" Icon="timer.png">
+            <ShellContent ContentTemplate="{DataTemplate pages:TimerView}"/>
+        </Tab>
+    </TabBar>
+</Shell>

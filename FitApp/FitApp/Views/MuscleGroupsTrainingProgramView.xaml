@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:FitApp.ViewModels"
+             xmlns:m="clr-namespace:FitApp.Models"
+             x:Class="FitApp.Views.MuscleGroupsTrainingProgramView"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#F1F6F9">
+
+    <ContentPage.BindingContext>
+        <vm:MuscleGroupsTrainingProgramViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <!-- Список тренировочных программ в CollectionView -->
+            <CollectionView x:Name="MuscleGroupListView" ItemsSource="{Binding MuscleGroups}" SelectionMode="None">
+
+                <!-- Шаблон элемента списка -->
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="10" x:DataType="m:MuscleGroup">
+                            <!-- Название тренировочной программы в Label -->
+                            <Frame CornerRadius="25" BackgroundColor="#FFF" HeightRequest="60">
+                                <Label Text="{Binding Name}" FontSize="22" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="#000"/>
+                            </Frame>
+                            <!-- Распознаватель жестов на элементе списка для команды при тапе -->
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1"
+                                                      Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MuscleGroupsTrainingProgramViewModel}}, Path=MuscleGroupTapped}"
+                                                      CommandParameter="{Binding .}" />
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

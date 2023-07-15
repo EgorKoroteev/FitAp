@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:FitApp.ViewModels"
+             xmlns:m="clr-namespace:FitApp.Models"
+             x:Class="FitApp.Views.ProfileView"
+              Visual="Material" 
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#F1F6F9">
+
+    <ContentPage.BindingContext>
+        <vm:ProfileViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Padding="20,20,20,30">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0" Text="Замеры" FontSize="30" FontAttributes="Bold" TextColor="Black" Margin="0,0,111,0"/>
+
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+
+                <StackLayout>
+
+                    <Label Text="Ваш вес" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Visual="Material" FontSize="20" TextColor="Black"/>
+                    <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" 
+                                 HorizontalOptions="CenterAndExpand" Margin="0,0,0,70">
+
+                        <Entry Text="{Binding Weight, Mode=TwoWay}" WidthRequest="60"/>
+                        <Label Text="кг" FontSize="22" TextColor="Black" VerticalTextAlignment="End"/>
+
+                    </StackLayout>
+                    <Button Text="Сохранить" Command="{Binding SaveCommand}" Visual="Material" HeightRequest="50" CornerRadius="5" Margin="0,330,0,0" WidthRequest="210" HorizontalOptions="Center"/>
+                    <Button Text="Открыть историю" Command="{Binding HistoryCommand}"  HeightRequest="50" CornerRadius="5" Margin="0,5,0,0" WidthRequest="210" HorizontalOptions="Center"/>
+                </StackLayout>
+
+            </Grid>
+        </Grid>
+
+    </ContentPage.Content>
+</ContentPage>

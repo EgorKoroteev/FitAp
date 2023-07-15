@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:FitApp.Infrastructure.Converters"
+             xmlns:vm="clr-namespace:FitApp.ViewModels"
+             x:Class="FitApp.Views.TimerActiveView"
+             Shell.TabBarIsVisible="False"
+             Shell.NavBarIsVisible="False">
+
+    <ContentPage.BindingContext>
+        <vm:TimerActiveViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <converters:TimerColorConvertor x:Key="TimerColorConvertor" />
+        <converters:BoolToTextConverter x:Key="TimerTextConvertor"/>
+    </ContentPage.Resources>
+    
+    
+
+    <ContentPage.Content>
+        <Grid BackgroundColor="{Binding IsWorking, Converter={x:StaticResource TimerColorConvertor}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Padding="20,20,20,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0" Command="{Binding BackCommand}" BackgroundColor="{Binding IsWorking, Converter={x:StaticResource TimerColorConvertor}}" CornerRadius="110" WidthRequest="40" HeightRequest="40" Margin="0,0,25,0">
+                    <Button.ImageSource>
+                        <FileImageSource File="back.png"/>
+                    </Button.ImageSource>
+                </Button>
+
+            </Grid>
+
+            <StackLayout Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center">
+                <Label Text="{Binding LeftRounds}"
+                   FontSize="40"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center"
+                   TextColor="#000"/>
+
+                <Label Text="{Binding IsWorking, Converter={x:StaticResource TimerTextConvertor}}"
+                   FontSize="40"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center"
+                   TextColor="#000"/>
+
+                <Label Text="{Binding TimerDisplay}"
+                   FontSize="40"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center"
+                   TextColor="#000"/>
+
+                <Button Text="Старт"
+        Command="{Binding StartCommand}"
+        CommandParameter="Start"
+        FontSize="20"
+        Margin="0,20,0,0"
+        HorizontalOptions="Center" />
+
+                <Button Text="Остановить"
+        Command="{Binding StopCommand}"
+        CommandParameter="Stop"
+        FontSize="20"
+        Margin="0,20,0,0"
+        HorizontalOptions="Center" />
+
+            </StackLayout>
+
+        </Grid>
+
+
+
+
+        
+    </ContentPage.Content>
+</ContentPage>

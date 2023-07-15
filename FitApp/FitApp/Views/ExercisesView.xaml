@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:FitApp.ViewModels"
+             xmlns:m="clr-namespace:FitApp.Models"
+             x:Class="FitApp.Views.ExercisesView"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#F1F6F9">
+    
+    <ContentPage.BindingContext>
+        <vm:ExercisesViewModel/>
+    </ContentPage.BindingContext>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Padding="20,20,20,30">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" Command="{Binding BackCommand}" BackgroundColor="#F1F6F9" CornerRadius="110" WidthRequest="40" HeightRequest="40" Margin="0,0,0,0">
+                <Button.ImageSource>
+                    <FileImageSource File="back.png"/>
+                </Button.ImageSource>
+            </Button>
+
+            <Label Grid.Column="1" Text="{Binding Title}" FontSize="30" FontAttributes="Bold" TextColor="Black"/>
+
+            <Button Grid.Column="2" Command="{Binding AddExerciseCommand}" BackgroundColor="#F1F6F9" CornerRadius="100" WidthRequest="40" HeightRequest="35" Margin="0,0,0,0">
+                <Button.ImageSource>
+                    <FileImageSource File="add.png"/>
+                </Button.ImageSource>
+            </Button>
+        </Grid>
+
+        <StackLayout Grid.Row="1">
+            <!-- Список тренировочных программ в CollectionView -->
+            <CollectionView x:Name="ExercisesListView" ItemsSource="{Binding Exercises}" SelectionMode="None">
+
+                <!-- Шаблон элемента списка -->
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="10" x:DataType="m:Exercise">
+                            <!-- Название тренировочной программы в Label -->
+                            <Frame CornerRadius="25" BackgroundColor="#FFF" HeightRequest="60">
+                                <Label Text="{Binding Name}" FontSize="22" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="#000"/>
+                            </Frame>
+                            <!-- Распознаватель жестов на элементе списка для команды при тапе -->
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1"
+                                                      Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ExercisesViewModel}}, Path=ExerciseTapped}"
+                                                      CommandParameter="{Binding .}" />
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+        </StackLayout>
+    </Grid>
+</ContentPage>

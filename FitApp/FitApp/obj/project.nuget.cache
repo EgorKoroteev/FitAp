@@ -1,0 +1,23 @@
+{
+  "version": 2,
+  "dgSpecHash": "XPGyReP62cR53tIjuaJ1WrLow+0yEFJ7hxUBBTWNgKtgLkwWSmxw1Ece0CfOthjlpgNi809ye2D9MdomVQVs2Q==",
+  "success": true,
+  "projectFilePath": "Z:\\C#Projects\\FitApp\\FitApp\\FitApp\\FitApp.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Gof\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\Gof\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
+    "C:\\Users\\Gof\\.nuget\\packages\\sqlite-net-pcl\\1.8.116\\sqlite-net-pcl.1.8.116.nupkg.sha512",
+    "C:\\Users\\Gof\\.nuget\\packages\\sqlitepclraw.bundle_green\\2.0.4\\sqlitepclraw.bundle_green.2.0.4.nupkg.sha512",
+    "C:\\Users\\Gof\\.nuget\\packages\\sqlitepclraw.core\\2.0.4\\sqlitepclraw.core.2.0.4.nupkg.sha512",
+    "C:\\Users\\Gof\\.nuget\\packages\\sqlitepclraw.lib.e_sqlite3\\2.0.4\\sqlitepclraw.lib.e_sqlite3.2.0.4.nupkg.sha512",
+    "C:\\Users\\Gof\\.nuget\\packages\\sqlitepclraw.provider.e_sqlite3\\2.0.4\\sqlitepclraw.provider.e_sqlite3.2.0.4.nupkg.sha512",
+    "C:\\Users\\Gof\\.nuget\\packages\\system.buffers\\4.4.0\\system.buffers.4.4.0.nupkg.sha512",
+    "C:\\Users\\Gof\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512",
+    "C:\\Users\\Gof\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
+    "C:\\Users\\Gof\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.5.2\\system.runtime.compilerservices.unsafe.4.5.2.nupkg.sha512",
+    "C:\\Users\\Gof\\.nuget\\packages\\xamarin.essentials\\1.7.0\\xamarin.essentials.1.7.0.nupkg.sha512",
+    "C:\\Users\\Gof\\.nuget\\packages\\xamarin.forms\\5.0.0.2196\\xamarin.forms.5.0.0.2196.nupkg.sha512",
+    "C:\\Users\\Gof\\.nuget\\packages\\xamarin.forms.visual.material\\5.0.0.2196\\xamarin.forms.visual.material.5.0.0.2196.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:FitApp.ViewModels"
+             x:Class="FitApp.Views.ModifyExerciseView">
+
+    <ContentPage.BindingContext>
+        <vm:ModifyExerciseViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout>
+            
+            <Entry Text="{Binding Name, Mode=TwoWay}" Placeholder="Название упражнения"/>
+
+            
+            <Editor Text="{Binding Description, Mode=TwoWay}" AutoSize="TextChanges" Placeholder="Описание упражнения"/>
+
+            <Label Text="Группы мышц" FontSize="20" TextColor="Black" />
+            <CollectionView ItemsSource="{Binding MuscleGroups}"
+                SelectionMode="Multiple"
+                SelectedItems="{Binding PreSelectedMuscleGroups}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Label Text="{Binding .}" FontSize="18" TextColor="Black"/>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <StackLayout>
+                <Button Text="Cancel" Command="{Binding CancelCommand}"/>
+                <Button Text="Ok" Command="{Binding SaveCommand}"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

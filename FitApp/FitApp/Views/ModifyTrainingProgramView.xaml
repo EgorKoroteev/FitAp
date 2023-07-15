@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:FitApp.ViewModels"
+             xmlns:m="clr-namespace:FitApp.Models"
+             x:Class="FitApp.Views.ModifyTrainingProgramView">
+
+    <ContentPage.BindingContext>
+        <vm:ModifyTrainingProgramViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Название тренировки"/>
+            <Entry Placeholder="Название" Text="{Binding Name, Mode=TwoWay}"/>
+            <Label Text="Описание тренировки"/>
+            <Editor Placeholder="Описание" Text="{Binding Description, Mode=TwoWay}" AutoSize="TextChanges"/>
+
+            <Button Text="Добавить упражнение" Command="{Binding AddExerciseCommand}"/>
+            <Label Text="Упражнения"/>
+
+
+            <CollectionView x:Name="ExercisesListView" ItemsSource="{Binding Exercises}" SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="10" x:DataType="m:ModifyExercise">
+                            <Label Text="{Binding Name}"/>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1"
+                                                  Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ModifyTrainingProgramViewModel}}, Path=ExerciseTapped}"
+                                                  CommandParameter="{Binding .}"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+
+            <StackLayout>
+                <Button Text="Cancel" Command="{Binding CancelCommand}"/>
+                <Button Text="Ok" Command="{Binding SaveCommand}"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

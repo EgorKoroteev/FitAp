@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:FitApp.ViewModels"
+             xmlns:m="clr-namespace:FitApp.Models"
+             x:Class="FitApp.Views.TrainingProgramSettingsView">
+
+    <ContentPage.BindingContext>
+        <vm:TrainingProgramSettingsViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Настройка тренировки"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+
+            <Label Text="Введите число подходов и повторений"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+
+            <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+
+
+                <!-- Список тренировочных программ в CollectionView -->
+                <CollectionView x:Name="ExercisesListView" ItemsSource="{Binding Exercises}" SelectionMode="None">
+
+                    <!-- Шаблон элемента списка -->
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Padding="10" x:DataType="m:ModifyExercise">
+                                <!-- Название тренировочной программы в Label -->
+
+                                <Frame CornerRadius="25" BackgroundColor="#DEDDDD" HeightRequest="90">
+                                    <StackLayout HorizontalOptions="Center">
+                                        <Label Text="{Binding Name}" FontSize="22" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                        <StackLayout Orientation="Horizontal" VerticalOptions="End">
+                                            <Entry WidthRequest="55" Text="{Binding Laps, Mode=TwoWay}" BackgroundColor="#fff"/>
+                                            <Label Text="Под."/>
+                                            <Entry WidthRequest="55" Text="{Binding Iteration, Mode=TwoWay}" BackgroundColor="#fff"/>
+                                            <Label Text="Повт."/>
+                                            <Entry WidthRequest="55" Text="{Binding Weight, Mode=TwoWay}" BackgroundColor="#fff"/>
+                                            <Label Text="кг"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Frame>
+
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+
+                </CollectionView>
+
+            </StackLayout>
+
+            <Button Text="Начать тренировку" Command="{Binding StartTrain}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:vm="clr-namespace:FitApp.ViewModels"
+             xmlns:m="clr-namespace:FitApp.Models"
+             x:Class="FitApp.Views.TrainingProgramActiveView"
+             Shell.NavBarIsVisible="False"
+             Shell.TabBarIsVisible="False"
+             BackgroundColor="#F1F6F9"
+             Visual="Material">
+
+    <ContentPage.BindingContext>
+        <vm:TrainingProgramActiveViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Padding="20,20,20,30">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0" Command="{Binding BackCommand}" BackgroundColor="#F1F6F9" CornerRadius="100" WidthRequest="25" HeightRequest="33" Margin="0,0,91,0">
+                    <Button.ImageSource>
+                        <FileImageSource File="back.png"/>
+                    </Button.ImageSource>
+                </Button>
+
+                <Label Grid.Column="1" Text="{Binding StopwatchTime, StringFormat='{}{0:hh\\:mm\\:ss}'}" FontSize="30" TextColor="Black" Margin="0,0,77,0"/>
+
+                <Button Grid.Column="2" Command="{Binding EndTrainingProgramCommand}" BackgroundColor="#F1F6F9" CornerRadius="100" WidthRequest="33" HeightRequest="49" Margin="0,5,0,0">
+                    <Button.ImageSource>
+                        <FileImageSource File="delete.png"/>
+                    </Button.ImageSource>
+                </Button>
+            </Grid>
+
+            <StackLayout Grid.Row="1">
+
+                <CarouselView ItemsSource="{Binding Exercises}">
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout x:DataType="m:ModifyExercise">
+                                <Label Text="{Binding Name}" FontSize="20" TextColor="Black"/>
+                                <Label Text="{Binding Description}" FontSize="18" TextColor="Black"/>
+
+                                <CollectionView x:Name="LapsListConllection" SelectionMode="None" ItemsSource="{Binding LapsArray}">
+
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackLayout Padding="10">
+                                                <Frame CornerRadius="25" BackgroundColor="#DEDDDD" HeightRequest="90"  x:DataType="m:Lap">
+                                                    <StackLayout HorizontalOptions="Center">
+                                                        <StackLayout Orientation="Horizontal" VerticalOptions="End">
+                                                            <Entry WidthRequest="55" Text="{Binding Iteraiton, Mode=TwoWay}" BackgroundColor="#fff"/>
+                                                            <Label Text="Повт."/>
+                                                            <Entry WidthRequest="55" Text="{Binding Weight, Mode=TwoWay}" BackgroundColor="#fff"/>
+                                                            <Label Text="кг"/>
+                                                            <CheckBox IsChecked="{Binding IsChecked, Mode=TwoWay}"/>
+                                                        </StackLayout>
+                                                    </StackLayout>
+                                                </Frame>
+                                        </StackLayout>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                                </CollectionView>
+
+
+                            </StackLayout>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
+
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
